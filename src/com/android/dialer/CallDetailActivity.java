@@ -212,8 +212,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mResources = getResources();
 
         mCallTypeHelper = new CallTypeHelper(getResources());
-        mCallDetailHeader = new CallDetailHeader(this, mPhoneNumberHelper);
         mPhoneNumberHelper = new PhoneNumberDisplayHelper(mResources);
+        mCallDetailHeader = new CallDetailHeader(this, mPhoneNumberHelper);
         mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(mResources, mCallTypeHelper,
                 new PhoneNumberUtilsWrapper());
         mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
@@ -419,12 +419,14 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
 
                 final boolean isVoicemailNumber =
                         PhoneNumberUtilsWrapper.INSTANCE.isVoicemailNumber(firstDetails.number);
+
                 final int contactType =
                         isVoicemailNumber? ContactPhotoManager.TYPE_VOICEMAIL :
                         isBusiness ? ContactPhotoManager.TYPE_BUSINESS :
                         ContactPhotoManager.TYPE_DEFAULT;
 
                 mCallDetailHeader.loadContactPhotos(firstDetails.photoUri, displayNameForDefaultImage, lookupKey, contactType);
+
                 findViewById(R.id.call_detail).setVisibility(View.VISIBLE);
             }
         }
