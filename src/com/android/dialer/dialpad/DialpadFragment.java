@@ -948,7 +948,7 @@ public class DialpadFragment extends Fragment
      * pressed.
      */
     public void dialButtonPressed() {
-        mHaptic.vibrate();
+        getView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         handleDialButtonPressed();
     }
 
